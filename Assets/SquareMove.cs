@@ -23,7 +23,7 @@ public class SquareMove : MonoBehaviour
         targetPos = GetRandomPos();
         if (isEnemy == false)
         {
-            
+            Player.squares.Add(this);
         }
     }
     private void Update()
@@ -38,7 +38,7 @@ public class SquareMove : MonoBehaviour
     {
         if(isEnemy)
         {
-
+            Player.GameOver();
         }
         else
         {
@@ -47,23 +47,25 @@ public class SquareMove : MonoBehaviour
     }
     private void PointLogic()
     {
+        Player.score++;
         healthCube--;
         if (healthCube == 0)
         {
+            Player.squares.Remove(this);
             Destroy(gameObject);
         }
         else
         {
             speedSquare += speedRec;
-            transform.localScale = new Vector3(scaleRec, scaleRec, scaleRec);
+            transform.localScale -= new Vector3(scaleRec, scaleRec, scaleRec);
             transform.position = GetRandomPos();
         }
     }
     private Vector3 GetRandomPos()
     {
         Vector3 randomVector = new Vector3();
-        randomVector.x = Random.Range(-8, 8);
-        randomVector.y = Random.Range(-4, 4);
+        randomVector.x = Random.Range(-6, 6);
+        randomVector.y = Random.Range(-3, 3);
         randomVector.z = transform.position.z;
         return randomVector;
     }    

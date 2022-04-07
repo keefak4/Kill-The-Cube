@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public static Player playerSinglton;
-    public static int coinsScore = 0;
+    public static int score = 0;
     public static List<SquareMove> squares;
     public static int squareCount;
     private void Awake()
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
         playerSinglton = this;
         squares = new List<SquareMove>();
     }
+    
     private void Update()
     {
         if(squares.Count == 0)
@@ -23,15 +24,16 @@ public class Player : MonoBehaviour
         }
         squareCount = squares.Count;
     }
-    public void Victory()
+    public static void Victory()
     {
-
+        UI.ShowVictoryPanel();
     }
-    public void GameOver()
+    public static void GameOver()
     {
-        coinsScore = 0;
+        UI.ShowGameOverPanel();
+        score = 0;
     }
-    public void Restart()
+    public static void Restart()
     {
         int bueldIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(bueldIndex);

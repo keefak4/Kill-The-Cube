@@ -15,5 +15,25 @@ public class UI : MonoBehaviour
     {
         UIsinglton = this;
     }
+    private void Update()
+    {
+        textCoins.text = Player.score.ToString();
+    }
+    public void OnClickRestart()
+    {
+        Player.Restart();
+    }
+    public static void ShowVictoryPanel()
+    {
+        UIsinglton.panel.SetActive(true);
+        UIsinglton.victoryText.gameObject.SetActive(true);
+        UIsinglton.panelTextScore.text = Player.score.ToString();
+    }
+    public static void ShowGameOverPanel()
+    {
+        UIsinglton.panel.SetActive(true);
+        UIsinglton.gameOverText.gameObject.SetActive(true);
+        UIsinglton.panelTextScore.text = Player.score.ToString();
+    }
 
 }
